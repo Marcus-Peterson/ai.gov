@@ -1,9 +1,7 @@
 ---
-import '../styles/global.css';
-import UsaBanner from '../components/UsaBanner.astro';
-import Head from '../components/Head.astro';
-import UsaSkipNav from '../components/UsaSkipNav.astro';
-import { getPageTitle } from '../helpers/meta';
+import '@repo/ui/styles/base/global.css';
+import { UsaBanner, Head, UsaSkipNav } from '@repo/ui/components';
+import { getPageTitle } from '@repo/ui/helpers';
 
 const title = getPageTitle(Astro);
 ---

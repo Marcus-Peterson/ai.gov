@@ -1,9 +1,11 @@
 ---
-import AgencyFooter from '../components/AgencyFooter.astro';
 import BaseLayout from './BaseLayout.astro';
-import { getPageTitle } from '../helpers/meta';
-import PlatformFooter from '../components/PlatformFooter.astro';
-import AgencyHeader from 'src/components/AgencyHeader.astro';
+import { getPageTitle } from '@repo/ui/helpers';
+import {
+  AgencyFooter,
+  AgencyHeader,
+  PlatformFooter,
+} from '@repo/ui/components';
 
 const title = getPageTitle(Astro);
 ---

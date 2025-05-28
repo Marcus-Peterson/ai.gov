@@ -9,6 +9,7 @@ const __dirname = dirname(__filename);
 export default createAstroConfig({
   appDir: __dirname,
   overrides: {
-    // Add any site-specific overrides here
+    // Add any console-specific overrides here
+    base: '/dashboard/',
   }
 });

@@ -1,0 +1,32 @@
+---
+const { title } = Astro.props;
+import { Font } from 'astro:assets';
+import { getUrlFromBase } from '@repo/ui/helpers';
+---
+
+<meta name="viewport" content="width=device-width" />
+<link rel="icon" type="image/svg+xml" href=`${getUrlFromBase('favicon.ico')}` />
+<meta name="generator" content={Astro.generator} />
+<title>{title}</title>
+<script is:inline>
+  if ('performance' in window) {
+    performance.mark('gsa:documenthead:start');
+  }
+</script>
+<script is:inline src=`${getUrlFromBase('uswds/js/uswds-init.min.js')}`
+></script>
+<Font cssVariable="--ai-font-family-sans" preload />
+<style>
+  body {
+    font-family: var(--ai-font-family-sans);
+  }
+</style>
+<script>
+  import '../static/uswds/js/uswds.js';
+</script>
+<!-- This belongs at the very bottom of the head -->
+<script is:inline>
+  if ('performance' in window) {
+    performance.mark('gsa:documenthead:end');
+  }
+</script>
