@@ -1,0 +1,22 @@
+{
+  "name": "@repo/style-tokens",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "type": "module",
+  "files": [
+    "dist",
+    "properties"
+  ],
+  "scripts": {
+    "build": "tsc && style-dictionary build --config ./dist/config.js",
+    "clean": "rm -rf build",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@divriots/style-dictionary-to-figma": "^0.4.0",
+    "@repo/typescript-config": "workspace:*",
+    "style-dictionary": "^4.4.0",
+    "vitest": "^3.0.7"
+  }
+}

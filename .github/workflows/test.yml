@@ -18,6 +18,16 @@ jobs:
       
       - name: Build packages
         run: pnpm build
+        
+      - name: Upload style token artifacts
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: tokens-json
+          path: |
+            packages/style-tokens/dist/css/tokens.json
+            packages/style-tokens/dist/css/variables.css
+            packages/style-tokens/dist/figma-tokens.json
 
       - name: Run tests
         run: pnpm test
@@ -30,3 +40,46 @@ jobs:
         
       - name: Check formatting
         run: pnpm format --check
+        
+      - name: Comment artifact link on PR
+        if: ${{ github.event_name == 'pull_request' }}
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const artifactName = 'tokens-json'; // Name of the uploaded artifact
+            
+            // Fetch the artifacts for the current workflow run
+            const artifacts = await github.rest.actions.listWorkflowRunArtifacts({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId
+            });
+            
+            // Find the artifact by name
+            const artifact = artifacts.data.artifacts.find(a => a.name === artifactName);
+            
+            // Check if the artifact exists and get its ID
+            if (!artifact) {
+              throw new Error(`Artifact "${artifactName}" not found.`);
+            }
+            
+            const artifactID = artifact.id;
+            const artifactURL = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}/artifacts/${artifactID}`;
+            
+            // Construct the PR comment
+            const commentBody = `
+              ### Build Artifact Available 🚀
+              Artifact **${artifactName}** has been successfully uploaded.
+            
+              You can download it [here](${artifactURL}).
+            `;
+            
+            // Post the comment to the pull request
+            await github.rest.issues.createComment({
+              issue_number: context.payload.pull_request.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: commentBody,
+            });
+
+
