@@ -119,9 +119,3 @@ This AGENTS spec outlines a modular, cleanly structured system:
 * **Admin analytics** via `console-agent`
 * **Shared logic** for API, models, auth
 * **Robust infra and CI** via monorepo tooling
-
-Next, flesh each agent out using real code: list endpoints, add security layer details, and verify dependency safety.
-
----
-
-Let me know if you'd like me to fetch directory contents automatically to expand this with actual file-by-file agents, or scaffold the final sections!
