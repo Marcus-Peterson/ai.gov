@@ -1,9 +1,3 @@
-Thought for 4 seconds
-
-Here’s a **massive `AGENTS.md`** tailored to the **gsa-tts-archived/ai.gov** repository, constructed entirely from publicly visible content (folder structure, tools, README). You can refine it further with actual code once you clone the project.
-
----
-
 # AGENTS.md – AI.gov Monorepo Agents Specification
 
 ## 📦 Overview
